@@ -1,0 +1,15 @@
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\bin\Debug\net6.0\VPW.exe
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\bin\Debug\net6.0\VPW.deps.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\bin\Debug\net6.0\VPW.runtimeconfig.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\bin\Debug\net6.0\VPW.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\bin\Debug\net6.0\VPW.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.csproj.AssemblyReference.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.AssemblyInfoInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.AssemblyInfo.cs
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.csproj.CoreCompileInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\refint\VPW.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\VPW.genruntimeconfig.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Jaar 2 (2023-2024)\Software Testing\_OEFENINGEN\VPW\VPW\obj\Debug\net6.0\ref\VPW.dll
