@@ -5,7 +5,7 @@ const input = new ll.LineReadStream(process.stdin);
 
 let numLists = 0;
 let listLength = 0;
-let listCount = -1;
+let listIndex = -1;
 let lists = [];
 
 input.on("line", line => {
@@ -18,13 +18,13 @@ input.on("line", line => {
     else {
         // new list
         if (numLists > 0 && listLength == 0) {
-            listCount++;
+            listIndex++;
             listLength = +n;
         }
         // fill list
         else {
-            if (!lists[listCount]) lists[listCount] = []; // initialize list
-            lists[listCount].push(+n);
+            if (!lists[listIndex]) lists[listIndex] = []; // initialize list
+            lists[listIndex].push(+n);
             listLength--;
         }
     }
