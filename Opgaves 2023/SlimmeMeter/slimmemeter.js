@@ -10,6 +10,32 @@ let numberOfTasks = 0;
 let task;
 let minimalTotalCosts = [];
 
+function calculateCost(hours,minutes,startHourIndex,costOfElectricity,usage) {
+    let total = 0;
+    if (minutes == 0) {
+        for (let i = 0; i < hours; i++) {
+            total += usage * (costOfElectricity[startHourIndex + i] * 60);
+        }
+    }
+    else {
+        if (costOfElectricity[startHourIndex] > costOfElectricity[startHourIndex + hours]) {
+            let i = 0;
+            total += usage * (costOfElectricity[startHourIndex] * minutes);
+            for (i = 0; i < hours; i++) {
+                total += usage * (costOfElectricity[startHourIndex + i + 1] * 60);
+            }
+        }
+        else {
+            let i = 0;
+            for (i = 0; i < hours; i++) {
+                total += usage * (costOfElectricity[startHourIndex + i] * 60);
+            }
+            total += usage * (costOfElectricity[startHourIndex + i] * minutes);
+        }
+    }
+    return total;
+}
+
 input.on("line", line => {
     const inputLine = ll.chomp(line);
 
@@ -32,44 +58,15 @@ input.on("line", line => {
             let hours = Math.floor(durationInMinutes / 60);
             let minutes = durationInMinutes - (hours * 60);
 
-            // most lucrative start index
-            let maxHours = Math.ceil(durationInMinutes / 60);
+            // calculate cost at every index
             let estimations = [];
-            for (let index = 0; index < costOfElectricity.length - hours + 1; index++) {
-                let total = 0;
-                for (let i = 0; i < maxHours; i++) {
-                    total += costOfElectricity[index + i];
-                }
-                estimations.push({ estimate: total / maxHours, hourIndex: index });
+            for (let index = 0; index < costOfElectricity.length; index++) {
+                let estimate = calculateCost(hours,minutes,index,costOfElectricity,usage);
+                estimations.push({ estimate: estimate, hourIndex: index });
             }
             estimations.sort((a, b) => a.estimate - b.estimate);
-            let startHourIndex = estimations[0].hourIndex;
 
-            let total = 0;
-            
-            if (minutes == 0) {
-                for (let i = 0; i < hours; i++) {
-                    total += usage * (costOfElectricity[startHourIndex + i] * 60);
-                }
-            }
-            else {
-                if (costOfElectricity[startHourIndex] > costOfElectricity[startHourIndex + hours]) {
-                    let i = 0;
-                    total += usage * (costOfElectricity[startHourIndex] * minutes);
-                    for (i = 0; i < hours; i++) {
-                        total += usage * (costOfElectricity[startHourIndex + i + 1] * 60);
-                    }
-                }
-                else {
-                    let i = 0;
-                    for (i = 0; i < hours; i++) {
-                        total += usage * (costOfElectricity[startHourIndex + i] * 60);
-                    }
-                    total += usage * (costOfElectricity[startHourIndex + i] * minutes);
-                }
-            }
-
-            minimalTotalCosts[testIndex] += total;
+            minimalTotalCosts[testIndex] += estimations[0].estimate;
 
             numberOfTasks--;
             if (numberOfTasks == 0) {
