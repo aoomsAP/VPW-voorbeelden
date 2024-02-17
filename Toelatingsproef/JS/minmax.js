@@ -26,11 +26,12 @@ input.on("line", line => {
             if (!lists[listIndex]) lists[listIndex] = []; // initialize list
             lists[listIndex].push(+n);
             listLength--;
+            if (listLength === 0) numLists--;
         }
     }
 
     // new line after all input has been pasted in terminal
-    if (n === "") process.exit();
+    if (numLists == 0) process.exit();
 })
 
 process.on("exit", function () {
