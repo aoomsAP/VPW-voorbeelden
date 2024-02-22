@@ -20,8 +20,6 @@ input.on('line', (l) => {
     }
     else {
         let scores = line.split(" ").map(x => +x);
-        // console.log("programmers",programmers);
-        // console.log("scores",scores.length);
         tests.push({
             programmers: programmers, // 1-1000
             testRound: testRound, // 1-2000
