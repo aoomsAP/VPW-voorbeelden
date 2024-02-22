@@ -1,69 +1,43 @@
-const ll = require('lazylines');
+const fs = require("fs");
+const input = fs.readFileSync("voorbeeld.txt", "utf8");
 
-process.stdin.resume();
-const input = new ll.LineReadStream(process.stdin);
+const lines = input.split("\n").slice(1).filter(x => x != "");
 
-let testsAmount = 0;
+// parsing (messy)
 let tests = [];
+let nextIndex = 0;
+for (let lineIndex = 0; lineIndex < lines.length; lineIndex = nextIndex) {
+    let totalRows = +lines[lineIndex].split(" ")[0];
 
-let totalRows = null;
-let grid = [];
-let numberOfSteps = null;
-let steps = [];
-
-input.on('line', (l) => {
-    let line = ll.chomp(l);
-
-    if (testsAmount == 0) {
-        // first line: amount of tests
-        testsAmount = +line;
-    }
-    else if (totalRows == null) {
-        // line: total rows, total columns
-        totalRows = +line.split(" ")[0];
-    }
-    else {
-        if (grid.length != totalRows) {
-            // line: grid row
-            const row = line.split("").map(x => ({ value: x, visited: false }))
-            grid.push(row);
-        }
-        else {
-
-            if (numberOfSteps == null) {
-                // line: number of steps
-                numberOfSteps = +line;
-            }
-            else {
-                // line: step
-                steps.push({
-                    rowIndex: +line.split(" ")[0] - 1,
-                    columnIndex: +line.split(" ")[1] - 1,
-                    type: line.split(" ")[2]
-                })
-
-                if (steps.length == numberOfSteps) {
-                    // test done
-                    tests.push({
-                        grid: grid,
-                        steps: steps,
-                    })
-
-                    // reset values
-                    totalRows = null;
-                    grid = [];
-                    numberOfSteps = null;
-                    steps = [];
-                    testsAmount--;
-                }
-            }
-        }
+    let grid = [];
+    for (let i = lineIndex + 1; i <= lineIndex + totalRows; i++) {
+        const gridRowWithMarkers = lines[i].split("").map(x => ({ value: x, visited: false }))
+        grid.push(gridRowWithMarkers);
     }
 
-    if (testsAmount == 0) process.exit();
-});
+    nextIndex = lineIndex + totalRows + 1;
+    let numberOfSteps = +lines[nextIndex];
+
+    let steps = [];
+    for (let i = nextIndex + 1; i <= nextIndex + numberOfSteps; i++) {
+        steps.push({
+            rowIndex: +lines[i].split(" ")[0] - 1,
+            columnIndex: +lines[i].split(" ")[1] - 1,
+            type: lines[i].split(" ")[2]
+        })
+    }
+
+    tests.push({
+        grid: grid,
+        steps: steps,
+    })
+
+    nextIndex += numberOfSteps + 1;
+}
+
 
 // calculation
+
 function markIsland(step, grid) {
     let x = step.columnIndex;
     let y = step.rowIndex;
@@ -117,7 +91,7 @@ function calculateStep(grid, step) {
                         if (grid[y][x].value != "0") grid[y][x].value = (parseInt(grid[y][x].value) - 1).toString();
                     }
                 }
-
+                
                 // for letter
                 else {
                     if (step.type === "+") {
@@ -143,21 +117,21 @@ function calculateStep(grid, step) {
     return grid;
 }
 
-process.on('exit', () => {
-    tests.forEach((test, testIndex) => {
-        // refactor grid
-        test.steps.forEach(step => {
 
-            // mark cells as visited
-            test.grid = markIsland(step, test.grid);
+tests.forEach((test, testIndex) => {
 
-            // refactor grid for given step
-            test.grid = calculateStep(test.grid, step);
-        })
+    // refactor grid
+    test.steps.forEach(step => {
 
-        // index (1) + each line of grid
-        test.grid.forEach(line => {
-            console.log(`${testIndex + 1} ${line.map(x => x.value).join("")}`);
-        })
+        // mark cells as visited
+        test.grid = markIsland(step, test.grid);
+
+        // refactor grid for given step
+        test.grid = calculateStep(test.grid, step);
     })
-});
+
+    // index (1) + each line of grid
+    test.grid.forEach(line => {
+        console.log(`${testIndex + 1} ${line.map(x => x.value).join("")}`);
+    })
+})
