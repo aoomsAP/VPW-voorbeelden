@@ -1,46 +1,22 @@
-const ll = require("lazylines");
-process.stdin.resume();
-const input = new ll.LineReadStream(process.stdin);
+const fs = require("fs");
+const input = fs.readFileSync("input3.txt", "utf8");
 
-let numberOfTests = 0;
-let numberOfValues = null;
-let startCapital = null;
+const lines = input.split("\r\n").slice(1);
+
+// parsing
+let count = 1;
 let tests = [];
+for (let i = 0; i < lines.length; i += 3) {
+    tests.push({
+        id: count,
+        startCapital: +lines[i],
+        values: lines[i + 2].split(" ").map(x => +x),
+    })
+    count++;
+}
 
-input.on("line", l => {
-    const line = ll.chomp(l);
-
-    if (numberOfTests == 0) {
-        numberOfTests = +line;
-    }
-    else {
-
-        if (startCapital == null) {
-            startCapital = +line;
-        }
-        else if (numberOfValues == null) {
-            numberOfValues = +line;
-        }
-        else {
-            let values = line.split(" ").map(x => +x);
-            let test = {
-                startCapital: startCapital,
-                values: values,
-            }
-            tests.push(test);
-
-            startCapital = null;
-            numberOfValues = null;
-            numberOfTests--;
-        }
-    }
-
-    if (numberOfTests === 0) {
-        process.exit();
-    }
-})
-
-function calc(test) {
+// calculating
+for (let test of tests) {
     let remainingCapital = test.startCapital;
 
     // initialize first buy
@@ -49,8 +25,6 @@ function calc(test) {
     remainingCapital -= buyPrice * shares;
 
     if (test.values.length === 1) {
-        // if there is only one value, nothing will be bought or sold
-        // the end capital will be the start capital
         remainingCapital = test.startCapital;
     }
     else {
@@ -90,11 +64,5 @@ function calc(test) {
         }
     }
 
-    return remainingCapital;
+    console.log(test.id + " " + remainingCapital);
 }
-
-process.on("exit", () => {
-    tests.forEach((test, i) => {
-        console.log(`${i + 1} ${calc(test)}`);
-    })
-})
