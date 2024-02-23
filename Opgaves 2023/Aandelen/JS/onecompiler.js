@@ -1,14 +1,17 @@
-const ll = require("lazylines");
-process.stdin.resume();
-const input = new ll.LineReadStream(process.stdin);
+var readline = require('readline');
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
+});
 
 let numberOfTests = 0;
 let numberOfValues = null;
 let startCapital = null;
 let tests = [];
 
-input.on("line", l => {
-    const line = ll.chomp(l);
+rl.on('line', function(l){
+    const line = l.replace("\n","").replace("\r","");
 
     if (numberOfTests == 0) {
         numberOfTests = +line;
