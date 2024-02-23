@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZpfJZxiY4V81MVAB7NeXTG49FWx8eAfpjDYrt6ezdxNrDRgne6ZI2gTqaV5rmabF/CVNED4OVTb8NujJE6VlhA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\32473\\Documents\\- GRADUAAT PROGRAMMEREN\\Vlaamse Programmeer Wedstrijd\\VPW voorbeelden\\Opgaves 2023\\Aandelen\\Aandelen\\Aandelen\\Aandelen.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\32473\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\32473\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\32473\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\32473\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.26\\microsoft.netcore.app.host.win-x64.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}

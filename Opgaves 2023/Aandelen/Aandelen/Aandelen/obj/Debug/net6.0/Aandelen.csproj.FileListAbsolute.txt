@@ -1,0 +1,15 @@
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\bin\Debug\net6.0\Aandelen.exe
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\bin\Debug\net6.0\Aandelen.deps.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\bin\Debug\net6.0\Aandelen.runtimeconfig.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\bin\Debug\net6.0\Aandelen.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\bin\Debug\net6.0\Aandelen.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.csproj.AssemblyReference.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.AssemblyInfoInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.AssemblyInfo.cs
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.csproj.CoreCompileInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\refint\Aandelen.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\Aandelen.genruntimeconfig.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\Aandelen\Aandelen\Aandelen\obj\Debug\net6.0\ref\Aandelen.dll
