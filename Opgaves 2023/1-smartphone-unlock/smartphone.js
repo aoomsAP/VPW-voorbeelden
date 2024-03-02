@@ -48,51 +48,206 @@ input.on('line', (l) => {
     if (testsAmount == 0) process.exit();
 });
 
-function drawGrid(rows, columns) {
+
+function createGrid(rows, columns) {
     let grid = [];
-    let count = 1;
+    let point = 1;
     for (let i = 0; i < rows; i++) {
-        let row = [];
+        let row = []
         for (let j = 0; j < columns; j++) {
             row.push({
-                point: count,
-                position: { rowIndex: i, columnIndex: j },
-                visited: false
+                point: point,
+                position: { row: i, column: j },
+                visited: false,
             });
-            count++;
+            point++;
         }
         grid.push(row);
     }
     return grid;
 }
 
-function isPatternValid(test) {
-    // point is allowed to be starting point once & end point once
 
-    // if lines intersect with a point, it needs to have been visited before
+function addPositionsToPattern(tests) {
+    return tests.map(test => {
+        let grid = createGrid(test.rows, test.columns);
+
+        let patternWithPositions = test.pattern.map(point => {
+
+            let position;
+            for (let i = 0; i < grid.length; i++) {
+                for (let j = 0; j < grid[0].length; j++) {
+                    if (grid[i][j].point === point) position = grid[i][j].position;
+                }
+            }
+
+            return { point: point, position: position }
+        })
+
+        let newTest = {
+            rows: test.rows,
+            columns: test.columns,
+            patternSize: test.patternSize,
+            pattern: patternWithPositions,
+        }
+
+        return newTest;
+    })
+}
+
+
+function calculateDirection(currentPoint, previousPoint) {
+    let currentDirection = '';
+    let currentX = currentPoint.position.column;
+    let currentY = currentPoint.position.row;
+    let previousX = previousPoint.position.column;
+    let previousY = previousPoint.position.row;
+
+    let deltaX = currentX - previousX;
+    let deltaY = currentY - previousY;
+
+    if (deltaX == 0) {
+        currentDirection = 'vertical'
+    }
+    else if (deltaY == 0) {
+        currentDirection = 'horizontal'
+    }
+    else {
+        let angle = (currentY - previousY) / (currentX - previousX);
+        currentDirection = `diagonal-${angle}`;
+    }
+    return currentDirection;
+}
+
+
+function getIntermediatePoints(startX, startY, endX, endY) {
+    let intermediatePoints = [];
+
+    let xDifference = endX - startX;
+    let yDifference = endY - startY;
+
+    // horizontal
+    if (xDifference == 0) {
+        for (let point = Math.min(startY, endY) + 1; point < Math.max(startY, endY); point++) {
+            intermediatePoints.push({ x: endX, y: point })
+        }
+    }
+    // vertical
+    else if (yDifference == 0) {
+        for (let point = Math.min(startX, endX) + 1; point < Math.max(startX, endX); point++) {
+            intermediatePoints.push({ x: point, y: endY })
+        }
+    }
+    // diagonal
+    else {
+        let slope = yDifference / xDifference;
+
+        for (let x = Math.min(startX, endX) + 1; x < Math.max(startX, endX); x++) {
+            let y = (x - startX) * slope + startY;
+
+            if (y % 1 == 0) {
+                intermediatePoints.push({ x: x, y: y });
+            }
+        }
+    }
+
+    return intermediatePoints;
+}
+
+function isPatternValid(pattern) {
+
+    // keep track of all starting points and end points
+    const startPoints = new Set();
+    const endPoints = new Set();
+
+    function isValidMove(currentX, currentY, nextX, nextY) {
+
+        // if current point has been starting point, move is not valid
+        const start = `${currentX},${currentY}`;
+        if (startPoints.has(start)) {
+            return false;
+        }
+        // if current point has NOT been starting point, add current starting point to set
+        else {
+            startPoints.add(`${currentX},${currentY}`);
+        }
+
+        // if next point has been end point before, move is not valid
+        const end = `${nextX},${nextY}`;
+        if (endPoints.has(end)) {
+            return false;
+        }
+        // if next point has NOT been end point before, add next point to set
+        else {
+            endPoints.add(`${nextX},${nextY}`);
+        }
+
+        // check if any intermediate point has been visited
+        let intermediatePoints = getIntermediatePoints(currentX, currentY, nextX, nextY);
+
+        // for every intermediate point, check whether the point has either been a start or end point
+        for (let i = 0; i < intermediatePoints.length; i++) {
+            if (!(startPoints.has(`${intermediatePoints[i].x},${intermediatePoints[i].y}`)
+                || endPoints.has(`${intermediatePoints[i].x},${intermediatePoints[i].y}`))) {
+                // if intermediate point has not been visited either way, move is not valid
+                return false; 
+            }
+        }
+
+        // if move has passed all prior tests, move is valid
+        return true;
+    }
+
+    // go through entire pattern
+    for (let i = 1; i < pattern.length; i++) {
+        let currentX = pattern[i - 1].position.column;
+        let currentY = pattern[i - 1].position.row;
+        let nextX = pattern[i].position.column;
+        let nextY = pattern[i].position.row;
+
+        // check whether move is valid
+        if (!isValidMove(currentX, currentY, nextX, nextY)) {
+            // if move is not valid, entire pattern is not valid
+            return false;
+        }
+    }
+
+    // if entire pattern has been traversed without a problem, pattern is valid
+    return true;
 }
 
 process.on('exit', () => {
+
+    // the index position of each point is added to "pattern" array
+    tests = addPositionsToPattern(tests);
+
     tests.forEach((test, i) => {
 
-        const grid = drawGrid(test.rows, test.columns);
+        // test whether pattern is valid
+        if (isPatternValid(test.pattern)) {
 
-        // traversing grid
-        pattern.forEach(point => {
+            // get set of all unique angles/directions
+            let angles = new Set();
 
-            for (let x = 0; x < grid.length; x++) {
-                for (let y = 0; y < grid[0].length; y++) {
-                    if (grid[x][y] == point) {
+            for (let index = 1; index < test.pattern.length; index++) {
+                let previousPoint = test.pattern[index - 1];
+                let currentPoint = test.pattern[index];
 
-                        if (grid[x][y].visited == true) return false;
+                // calculate all angles/directions
+                let direction = calculateDirection(currentPoint, previousPoint);
 
-                        grid[x][y].visited = true;
-                    }
-                }
+                angles.add(direction);
             }
-        })
 
-        console.log(test);
-        console.log(`${i + 1} ${test}`);
+            // calculate complexity
+            let complexity = test.pattern.length - 1 + angles.size
+
+            console.log(`${i + 1} ${complexity}`);
+        }
+
+        // if pattern is not valid, print "ongeldig patroon"
+        else {
+            console.log(`${i + 1} ongeldig patroon`);
+        }
     });
 });
