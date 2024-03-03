@@ -1,0 +1,15 @@
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.AssemblyInfoInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.AssemblyInfo.cs
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.csproj.CoreCompileInputs.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.sourcelink.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\bin\Debug\net7.0\Korting.exe
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\bin\Debug\net7.0\Korting.deps.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\bin\Debug\net7.0\Korting.runtimeconfig.json
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\bin\Debug\net7.0\Korting.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\bin\Debug\net7.0\Korting.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\refint\Korting.dll
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.pdb
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\Korting.genruntimeconfig.cache
+C:\Users\32473\Documents\- GRADUAAT PROGRAMMEREN\Vlaamse Programmeer Wedstrijd\VPW voorbeelden\Opgaves 2023\3-korting\C#\Korting\Korting\obj\Debug\net7.0\ref\Korting.dll

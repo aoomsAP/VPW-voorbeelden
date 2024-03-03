@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const input = fs.readFileSync("wedstrijd.invoer", "utf8");
+const input = fs.readFileSync("../wedstrijd35.invoer", "utf8");
 const lines = input.split("\n").filter(x => x != "");
 
 let testsAmount = 0;
@@ -54,7 +54,7 @@ let output = "";
 
 tests.forEach((test, testIndex) => {
 
-    if (testIndex == 80) {
+    if (testIndex == 35) {
         console.log();
     }
 
@@ -128,4 +128,4 @@ tests.forEach((test, testIndex) => {
     }
 });
 
-fs.writeFileSync("output_wedstrijd.txt", output, "utf8");
+fs.writeFileSync("../output_wedstrijd.txt", output, "utf8");

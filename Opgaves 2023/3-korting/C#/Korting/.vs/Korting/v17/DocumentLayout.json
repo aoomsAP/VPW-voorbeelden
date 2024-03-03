@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\32473\\Documents\\- GRADUAAT PROGRAMMEREN\\Vlaamse Programmeer Wedstrijd\\VPW voorbeelden\\Opgaves 2023\\3-korting\\C#\\Korting\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{93E8C197-D655-41E4-972D-B18269BAB3F7}|Korting\\Korting.csproj|c:\\users\\32473\\documents\\- graduaat programmeren\\vlaamse programmeer wedstrijd\\vpw voorbeelden\\opgaves 2023\\3-korting\\c#\\korting\\korting\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93E8C197-D655-41E4-972D-B18269BAB3F7}|Korting\\Korting.csproj|solutionrelative:korting\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\32473\\Documents\\- GRADUAAT PROGRAMMEREN\\Vlaamse Programmeer Wedstrijd\\VPW voorbeelden\\Opgaves 2023\\3-korting\\C#\\Korting\\Korting\\Program.cs",
+              "RelativeDocumentMoniker": "Korting\\Program.cs",
+              "ToolTip": "C:\\Users\\32473\\Documents\\- GRADUAAT PROGRAMMEREN\\Vlaamse Programmeer Wedstrijd\\VPW voorbeelden\\Opgaves 2023\\3-korting\\C#\\Korting\\Korting\\Program.cs",
+              "RelativeToolTip": "Korting\\Program.cs",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAswIUAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-03T19:38:04.192Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
