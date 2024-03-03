@@ -72,7 +72,7 @@ process.on('exit', () => {
             // if they appear twice, it means they already left
             // and are not part of the current visitors at time of arrival
             [...Array.from(uniqueVisitors)].forEach((prevVisitor, v) => {
-                if (!trafficAtArrival.slice(v).indexOf(prevVisitor)) {
+                if (!trafficAtArrival.slice(v+1).includes(prevVisitor)) {
                     visitorsAtArrival.push(prevVisitor);
                 }
             })
@@ -81,6 +81,7 @@ process.on('exit', () => {
             // discount logic = 1/(Math.pow(2,currentVisitors)
             let discount = 0;
 
+            let visitorsAfterArrival = [];
             // add new discount for each new visitor, until current visitor leaves
             for (let i = arrival + 1; i < leaving; i++) {
 
@@ -90,13 +91,23 @@ process.on('exit', () => {
                 }
 
                 // if next visitor is included in the visitors at arrival,
-                // it means this visitor is leaving
-                // so it should be excluded from count
-                if (!visitorsAtArrival.includes(test.visitors[i])) {
+                // or next visitor is included in the visitors after arrival,
+                // it means this visitor is not newly arriving,
+                // but that this visitor is leaving (and should be excluded from count)
+                let newVisitor = !visitorsAtArrival.includes(test.visitors[i])
+                    && !visitorsAfterArrival.includes(test.visitors[i]);
 
-                    // if new visitor arrives, current visitor gets additional discount
+                // if new visitor arrives, current visitor gets additional discount
+                if (newVisitor) {
                     currentVisitors++;
-                    discount += 1 / (Math.pow(2, currentVisitors))
+                    visitorsAfterArrival.push(test.visitors[i]);
+                    discount += 1 / (Math.pow(2, currentVisitors));
+                    // console.log(discount);
+                }
+                // if it's not a new visitor, it's a visitor that is leaving
+                // so currentVisitors should be reduced
+                else {
+                    currentVisitors--;
                 }
             }
 
