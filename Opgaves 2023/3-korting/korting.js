@@ -55,11 +55,12 @@ function formatDecimalAsSmallestFraction(finalDiscount) {
 process.on('exit', () => {
     tests.forEach((test, testIndex) => {
 
-        // all unique visitors from 1-%
+        // all unique visitors
         let allVisitors = new Set([...test.visitors].sort((a, b) => a - b));
 
         // for each unique visitor
         for (let [visitorIndex, visitor] of allVisitors.entries()) {
+            // get index of arrival and index of leaving
             let arrival = test.visitors.indexOf(visitor);
             let leaving = test.visitors.indexOf(visitor, arrival + 1);
 
@@ -72,7 +73,7 @@ process.on('exit', () => {
             // if they appear twice, it means they already left
             // and are not part of the current visitors at time of arrival
             [...Array.from(uniqueVisitors)].forEach((prevVisitor, v) => {
-                if (!trafficAtArrival.slice(v+1).includes(prevVisitor)) {
+                if (!trafficAtArrival.slice(v + 1).includes(prevVisitor)) {
                     visitorsAtArrival.push(prevVisitor);
                 }
             })
@@ -97,16 +98,17 @@ process.on('exit', () => {
                 let newVisitor = !visitorsAtArrival.includes(test.visitors[i])
                     && !visitorsAfterArrival.includes(test.visitors[i]);
 
-                // if new visitor arrives, current visitor gets additional discount
                 if (newVisitor) {
+                    // add new visitor to current visitors
                     currentVisitors++;
                     visitorsAfterArrival.push(test.visitors[i]);
+
+                    // add discount
                     discount += 1 / (Math.pow(2, currentVisitors));
-                    // console.log(discount);
                 }
-                // if it's not a new visitor, it's a visitor that is leaving
-                // so currentVisitors should be reduced
                 else {
+                    // if it's not a new visitor, it's a visitor that is leaving
+                    // so currentVisitors should be reduced
                     currentVisitors--;
                 }
             }
