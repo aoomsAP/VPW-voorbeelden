@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const input = fs.readFileSync("../wedstrijd35.invoer", "utf8");
+const input = fs.readFileSync("../wedstrijd.invoer", "utf8");
 const lines = input.split("\n").filter(x => x != "");
 
 let testsAmount = 0;
@@ -34,6 +34,16 @@ for (let l of lines) {
     }
 };
 
+const greatestCommonDivisor = (a, b) => {
+    if (!b) return a;
+    return greatestCommonDivisor(b, a % b);
+}
+
+function leastCommonMultiple(a, b) {
+    let gcd = greatestCommonDivisor(a, b);
+    return (a * b) / gcd;
+}
+
 function formatDecimalAsSmallestFraction(finalDiscount) {
     // greatest commmon divisor function
     const greatestCommonDivisor = (a, b) => {
@@ -52,11 +62,8 @@ function formatDecimalAsSmallestFraction(finalDiscount) {
 
 let output = "";
 
-tests.forEach((test, testIndex) => {
 
-    if (testIndex == 35) {
-        console.log();
-    }
+tests.forEach((test, testIndex) => {
 
     // all unique visitors
     let allVisitors = new Set([...test.visitors].sort((a, b) => a - b));
@@ -83,7 +90,10 @@ tests.forEach((test, testIndex) => {
         let currentVisitors = visitorsAtArrival.length;
 
         // discount logic = 1/(Math.pow(2,currentVisitors)
-        let discount = 0;
+        let firstDiscount = true;
+        let numerator = 0;
+        let denominator = 0;
+        let divisor = 0;
 
         let visitorsAfterArrival = [];
         // add new discount for each new visitor, until current visitor leaves
@@ -107,7 +117,28 @@ tests.forEach((test, testIndex) => {
                 visitorsAfterArrival.push(test.visitors[i]);
 
                 // add discount
-                discount += 1 / (Math.pow(2, currentVisitors));
+
+                if (firstDiscount) {
+                    numerator = 1;
+                    denominator = Math.pow(2, currentVisitors);
+                    firstDiscount = false;
+                }
+                else {
+                    let newNumerator = 1;
+                    let newDenominator = Math.pow(2, currentVisitors);
+
+                    let lcm = leastCommonMultiple(denominator, newDenominator);
+
+                    let oldNum = numerator * (lcm / denominator);
+                    let newNum = newNumerator * (lcm / newDenominator);
+
+                    numerator = (oldNum + newNum);
+                    denominator = lcm;
+
+                    divisor = greatestCommonDivisor(numerator, denominator);
+                    numerator /= divisor;
+                    denominator /= divisor;
+                }
             }
             else {
                 // if it's not a new visitor, it's a visitor that is leaving
@@ -116,15 +147,13 @@ tests.forEach((test, testIndex) => {
             }
         }
 
-        // discount amount has a cap of 73/100
-        let finalDiscount = Math.min(discount, (73 / 100));
-
-        // format discount in smallest possible fraction
-        let fraction = formatDecimalAsSmallestFraction(finalDiscount);
+        let fraction = "";
+        if (numerator / denominator > 73 / 100) fraction = "73/100";
+        else if (numerator == 0 && denominator == 0) fraction = "0";
+        else fraction = `${numerator}/${denominator}`;
 
         // output discount for each visitor in a test
-        if (finalDiscount == 0) output += `${testIndex + 1} ${visitorIndex} ${finalDiscount}\n`;
-        else output += `${testIndex + 1} ${visitorIndex} ${fraction}\n`;
+        output += `${testIndex + 1} ${visitorIndex} ${fraction}\n`;
     }
 });
 
