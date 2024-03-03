@@ -72,8 +72,8 @@ process.on('exit', () => {
             // check whether they appear only once or twice in the traffic
             // if they appear twice, it means they already left
             // and are not part of the current visitors at time of arrival
-            [...Array.from(uniqueVisitors)].forEach((prevVisitor, v) => {
-                if (!trafficAtArrival.slice(v + 1).includes(prevVisitor)) {
+            [...Array.from(uniqueVisitors)].forEach((prevVisitor) => {
+                if (!trafficAtArrival.slice(trafficAtArrival.indexOf(prevVisitor)+1).includes(prevVisitor)) {
                     visitorsAtArrival.push(prevVisitor);
                 }
             })
