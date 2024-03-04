@@ -44,22 +44,6 @@ function leastCommonMultiple(a, b) {
     return (a * b) / gcd;
 }
 
-function formatDecimalAsSmallestFraction(finalDiscount) {
-    // greatest commmon divisor function
-    const greatestCommonDivisor = (a, b) => {
-        if (!b) return a;
-        return greatestCommonDivisor(b, a % b);
-    }
-    // turn discount decimal into an integer by multiplying by 10
-    let denominator = Math.pow(10, finalDiscount.toString().length - 2);
-    // get numerator by multiplying decimal with denominator
-    let numerator = finalDiscount * denominator;
-    // calculate greatest common divisor
-    let divisor = greatestCommonDivisor(numerator, denominator);
-    // divide numerator and denominator by greatest common divisor
-    return `${numerator / divisor}/${denominator / divisor}`;
-}
-
 let output = "";
 
 

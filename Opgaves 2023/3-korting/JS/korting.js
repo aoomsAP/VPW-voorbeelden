@@ -41,25 +41,9 @@ const greatestCommonDivisor = (a, b) => {
     return greatestCommonDivisor(b, a % b);
 }
 
-function leastCommonMultiple( a, b ) {
-    let gcd = greatestCommonDivisor( a, b );
+function leastCommonMultiple(a, b) {
+    let gcd = greatestCommonDivisor(a, b);
     return (a * b) / gcd;
-}
-
-function formatDecimalAsSmallestFraction(finalDiscount) {
-    // greatest commmon divisor function
-    const greatestCommonDivisor = (a, b) => {
-        if (!b) return a;
-        return greatestCommonDivisor(b, a % b);
-    }
-    // turn discount decimal into an integer by multiplying by 10
-    let denominator = Math.pow(10, finalDiscount.toString().length - 2);
-    // get numerator by multiplying decimal with denominator
-    let numerator = finalDiscount * denominator;
-    // calculate greatest common divisor
-    let divisor = greatestCommonDivisor(numerator, denominator);
-    // divide numerator and denominator by greatest common divisor
-    return `${numerator / divisor}/${denominator / divisor}`;
 }
 
 process.on('exit', () => {
@@ -83,7 +67,7 @@ process.on('exit', () => {
             // if they appear twice, it means they already left
             // and are not part of the current visitors at time of arrival
             [...Array.from(uniqueVisitors)].forEach((prevVisitor) => {
-                if (!trafficAtArrival.slice(trafficAtArrival.indexOf(prevVisitor)+1).includes(prevVisitor)) {
+                if (!trafficAtArrival.slice(trafficAtArrival.indexOf(prevVisitor) + 1).includes(prevVisitor)) {
                     visitorsAtArrival.push(prevVisitor);
                 }
             })
@@ -116,7 +100,7 @@ process.on('exit', () => {
                     currentVisitors++;
                     visitorsAfterArrival.push(test.visitors[i]);
 
-                    // add discount
+                    // ------------------- add discount
 
                     if (firstDiscount) {
                         numerator = 1;
@@ -124,20 +108,28 @@ process.on('exit', () => {
                         firstDiscount = false;
                     }
                     else {
+                        // to add two fractions with unlike denominators (e.g. 1/3 + 1/19)
+                        // we have to find the least common multiple (e.g. 57)
+                        // so we can turn them into fractions with the same denominator (e.g. 19/57 + 3/57 = 22/57)
+
                         let newNumerator = 1;
                         let newDenominator = Math.pow(2, currentVisitors);
-    
-                        let lcm = leastCommonMultiple(denominator,newDenominator);
-    
+
+                        let lcm = leastCommonMultiple(denominator, newDenominator);
+
+                        // make sure fractions have the same denominator
                         let oldNum = numerator * (lcm / denominator);
                         let newNum = newNumerator * (lcm / newDenominator);
-    
-                        numerator = (oldNum+newNum);
+
+                        // now we are able to add to the fractions together
+                        numerator = (oldNum + newNum);
                         denominator = lcm;
-    
-                        divisor = greatestCommonDivisor(numerator,denominator);
-                        numerator/=divisor;
-                        denominator/=divisor;
+
+                        // immediately reduce fraction to smallest possible fraction
+                        // for which we need the greatest common divisor
+                        divisor = greatestCommonDivisor(numerator, denominator);
+                        numerator /= divisor;
+                        denominator /= divisor;
                     }
                 }
                 else {
@@ -148,7 +140,7 @@ process.on('exit', () => {
             }
 
             let fraction = "";
-            if (numerator/denominator > 73/100) fraction = "73/100";
+            if (numerator / denominator > 73 / 100) fraction = "73/100";
             else if (numerator == 0 && denominator == 0) fraction = "0";
             else fraction = `${numerator}/${denominator}`;
 
