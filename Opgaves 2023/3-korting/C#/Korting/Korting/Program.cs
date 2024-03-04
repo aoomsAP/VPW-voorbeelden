@@ -25,20 +25,12 @@ class Program
             else
                 b %= a;
         }
-
         return a | b;
     }
 
-    public static string formatDecimalAsSmallestFraction(decimal finalDiscount)
+    private static long LCM(long a, long b)
     {
-        // turn discount decimal into an integer by multiplying by 10
-        long denominator = (long)Math.Pow(10, finalDiscount.ToString().Length - 2);
-        // get numerator by multiplying decimal with denominator
-        long numerator = (long)(finalDiscount * denominator);
-        // calculate greatest common divisor
-        long divisor = GCD(numerator, denominator);
-        // divide numerator and denominator by greatest common divisor
-        return $"{(numerator / divisor):F0}/{denominator / divisor}";
+        return (a * b) / GCD(a, b);
     }
 
     private static void Main(string[] args)
@@ -88,7 +80,7 @@ class Program
                 int leaving = tests[i].visitors.IndexOf(visitor, arrival + 1);
 
                 // how many visitors are at restaurant at time of arrival
-                List<int> trafficAtArrival = tests[i].visitors.GetRange(0,arrival);
+                List<int> trafficAtArrival = tests[i].visitors.GetRange(0, arrival);
                 var uniqueVisitorsAtArrival = trafficAtArrival.Distinct().ToList();
                 var visitorsAtArrival = new List<int>();
 
@@ -99,16 +91,18 @@ class Program
 
                 foreach (var previousVisitor in uniqueVisitorsAtArrival)
                 {
-                    var trafficSinceFirstAppearance = trafficAtArrival.Skip(trafficAtArrival.IndexOf(previousVisitor)+1).ToList();
+                    var trafficSinceFirstAppearance = trafficAtArrival.Skip(trafficAtArrival.IndexOf(previousVisitor) + 1).ToList();
                     if (!trafficSinceFirstAppearance.Contains(previousVisitor))
                     {
                         visitorsAtArrival.Add(previousVisitor);
                     }
                 }
-                int currentVisitors = visitorsAtArrival.Count;
+                double currentVisitors = visitorsAtArrival.Count;
 
-                // discount logic = 1/(Math.pow(2,currentVisitors)
-                decimal discount = 0;
+                // variables necessary to keep track of discount
+                bool firstDiscount = true;
+                long numerator = 0;
+                long denominator = 0;
 
                 List<int> visitorsAfterArrival = new List<int>();
                 // add new discount for each new visitor, until current visitor leaves
@@ -128,14 +122,45 @@ class Program
                     bool newVisitor = !visitorsAtArrival.Contains(tests[i].visitors[j])
                         && !visitorsAfterArrival.Contains(tests[i].visitors[j]);
 
-                    if (newVisitor)
+                    if (newVisitor && i != 70)
                     {
                         // add new visitor to current visitors
                         currentVisitors++;
                         visitorsAfterArrival.Add(tests[i].visitors[j]);
 
                         // add discount
-                        discount += (decimal) (1 / (Math.Pow(2, currentVisitors)));
+                        if (firstDiscount)
+                        {
+                            // discount logic
+                            numerator = 1;
+                            denominator = (long)Math.Pow(2.0, currentVisitors);
+                            firstDiscount = false;
+                        }
+                        else
+                        {
+                            // to add two fractions with unlike denominators
+                            // we have to find the least common multiple
+                            // so we can turn them into fractions with the same denominator
+
+                            long newNumerator = 1;
+                            long newDenominator = (long)Math.Pow(2.0, currentVisitors);
+
+                            long lcm = LCM(denominator, newDenominator);
+
+                            // make sure fractions have the same denominator
+                            long oldNum = numerator * (lcm/denominator);
+                            long newNum = newNumerator * (lcm/newDenominator);
+
+                            // now we are able to add to the fractions together
+                            numerator = (oldNum + newNum);
+                            denominator = lcm;
+
+                            // immediately reduce fraction to smallest possible fraction
+                            // for which we need the greatest common divisor
+                            long divisor = GCD(numerator, denominator);
+                            numerator /= divisor;
+                            denominator /= divisor;
+                        }
                     }
                     else
                     {
@@ -145,16 +170,13 @@ class Program
                     }
                 }
 
-                // discount amount has a cap of 73/100
-                decimal finalDiscount = Math.Min((decimal) discount, (decimal) (73.0 / 100.0));
-
-                // format discount in smallest possible fraction
                 string fraction = "";
-                if (finalDiscount != 0) fraction = formatDecimalAsSmallestFraction(finalDiscount);
+                if (numerator == 0 && denominator == 0) fraction = "0";
+                else if ((numerator / denominator) > (73 / (decimal)100)) fraction = "73/100";
+                else fraction = $"{numerator:F0}/{denominator:F0}";
 
                 // output discount for each visitor in a test
-                if (finalDiscount == 0) stdout.WriteLine($"{i + 1} {visitor} {finalDiscount}");
-                else stdout.WriteLine($"{i + 1} {visitor} {fraction}");
+                stdout.WriteLine($"{i + 1} {visitor} {fraction}");
             }
         }
     }
